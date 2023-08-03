@@ -75,10 +75,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install azure-cli
 
-      - name: 🗝️ Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          az login --service-principal -u  ${{ secrets.AZURE_AD_CLIENT_ID }} -p   ${{ secrets.AZURE_AD_CLIENT_SECRET }} --tenant  ${{ secrets.AZURE_AD_TENANT_ID }} 
+
+      # - name: 🗝️ Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 🚀 Deploy to Azure Web App
         id: deploy-to-webapp
